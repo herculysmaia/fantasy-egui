@@ -1,0 +1,63 @@
+# TODO: Desenvolvimento de Aplicação de Gerenciamento de Liga
+
+## 1. Tela de Busca e Gerenciamento de Times
+
+- [ ] Implementar interface de busca de times via API
+  - [ ] Definir e integrar API de busca de times
+  - [ ] Criar campo de busca e exibição de resultados
+- [ ] Adicionar funcionalidade para incluir time à lista de participantes
+  - [ ] Implementar botão "Adicionar"
+  - [ ] Salvar time no banco de dados
+- [ ] Adicionar funcionalidade para remover time da lista de participantes
+  - [ ] Implementar botão "Remover"
+  - [ ] Remover time do banco de dados
+
+## 2. Banco de Dados
+
+- [ ] Modelar banco de dados para times, participantes, finanças, pontuações e configurações
+- [ ] Implementar migrations e seed de dados iniciais
+
+## 3. Tela de Exibição dos Times Participantes e Status Financeiro
+
+- [ ] Criar tela para listar times participantes
+  - [ ] Buscar lista de times no banco de dados
+  - [ ] Exibir informações básicas dos times
+- [ ] Exibir status financeiro de cada time
+  - [ ] Integrar dados financeiros do banco de dados
+  - [ ] Exibir saldo, receitas e despesas
+
+## 4. Tela de Controle Financeiro Individual do Time
+
+- [ ] Criar tela de controle financeiro para cada time
+  - [ ] Exibir histórico de transações
+  - [ ] Permitir adicionar/editar/remover transações
+- [ ] Integrar operações financeiras ao banco de dados
+
+## 5. Tela de Controle de Pontuação Rodada a Rodada
+
+- [ ] Criar tela para controle de pontuação por rodada
+  - [ ] Permitir adicionar/editar/remover pontuações por rodada
+  - [ ] Exibir histórico de pontuações
+- [ ] Salvar e atualizar pontuações no banco de dados
+
+## 6. Tela de Estatísticas Gerais da Liga
+
+- [ ] Criar tela para exibição de estatísticas gerais
+  - [ ] Exibir ranking dos times
+  - [ ] Exibir gráficos de desempenho
+  - [ ] Exibir estatísticas financeiras agregadas
+
+## 7. Tela de Configurações Diversas
+
+- [ ] Criar tela de configurações
+  - [ ] Permitir ajustes de parâmetros da liga
+
+## 8. Integração e Testes
+
+- [ ] Implementar testes unitários e de integração para cada funcionalidade
+- [ ] Testar integração entre telas e banco de dados
+
+## 9. Documentação
+
+- [ ] Documentar endpoints da API utilizada
+- [ ] Documentar uso da aplicação e fluxos principais
