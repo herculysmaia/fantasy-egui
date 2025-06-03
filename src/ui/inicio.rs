@@ -4,18 +4,21 @@
 use eframe::egui::{self, Button, Color32, RichText, Vec2};
 
 // Importando a estrutura de dados e a enumeração de telas
-use super::{AppData, Tela};
+use super::{AcaoDaTela, Tela};
+use super::busca::BuscaData;
 
-// Implementando métodos para exibir a tela de inicial a estrutura de dados da aplicação
-impl AppData {
+// Estrura de dados para a tela inicial da aplicação
+#[derive(Default)]
+pub struct Inicio;
 
-    // Método para inicializar a tela inicial
-    pub fn show_inicio(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
-        self.inicio(ctx, frame);
-    }
+// Implementando comportamento padrão para a tela inicial
+impl Tela for Inicio {
 
-    // Método que define o conteúdo da tela inicial
-    fn inicio(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    // Defininindo a interface gráfica da tela inicial
+    fn exibir(&mut self, ctx: &egui::Context) -> Option<AcaoDaTela> {
+
+        // Definindo a ação padrão da tela
+        let mut acao = None;
 
         // Definindo o painel central da tela
         egui::CentralPanel::default().show(ctx, |ui| {
@@ -39,10 +42,13 @@ impl AppData {
 
                 // Botões do menu inicial
                 if ui.add_sized(tamanho_botao, Button::new("Buscar Time")).clicked() {
-                    self.tela = Tela::BuscaTime;
+                    acao = Some(AcaoDaTela::Push(Box::new(BuscaData::default())))
                 }
                 
             });
         });
+
+        // Retornando a ação da tela
+        acao
     }
 }

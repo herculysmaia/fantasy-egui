@@ -4,30 +4,39 @@
 use eframe::egui;
 
 // Importando a estrutura de dados e a enumeração de telas
-use super::{AppData, Tela};
+use super::{AcaoDaTela, Tela};
 
-// Implementando métodos para exibir a tela de busca a estrutura de dados da aplicação
-impl AppData {
+// Estrura de dados para a tela de busca da aplicação
+#[derive(Default)]
+pub struct BuscaData {
+    pub busca_time: String,
+}
 
-    // Método para inicializar a tela de busca
-    pub fn show_busca_time(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
-        self.busca(ctx, frame);
-    }
+// Implementando comportamento padrão para a tela de busca
+impl Tela for BuscaData {
 
-    // Método que define o conteúdo da tela de busca
-    fn busca(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    // Defininindo a interface gráfica da tela inicial
+    fn exibir(&mut self, ctx: &egui::Context) -> Option<AcaoDaTela> {
+
+        // Definindo a ação padrão da tela
+        let mut acao = None;
 
         // Definindo o painel central da tela
         egui::CentralPanel::default().show(ctx, |ui| {
 
-            // Identificando a tela de busca
-            ui.label("Conteúdo da Busca");
+            // Título da tela
+            ui.heading("Buscar Time");
 
-            // Botão para retornar à tela inicial
+            // Campo para entrada de texto para busca
+            ui.text_edit_singleline(&mut self.busca_time);
+
+            // Botão para voltar à tela inicial
             if ui.button("Voltar").clicked() {
-                self.tela = Tela::Inicio;
+                acao = Some(AcaoDaTela::Voltar);
             }
-            
         });
+
+        // Retornando a ação da tela
+        acao
     }
 }
