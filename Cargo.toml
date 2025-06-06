@@ -6,5 +6,6 @@ edition = "2024"
 [dependencies]
 dirs = "6.0.0"
 eframe = "0.31.1"
+egui_extras = "0.31.1"
 sqlx = { version = "0.8.6", features = ["sqlite", "runtime-tokio"] }
 tokio = { version = "1.45.1", features = ["full"] }

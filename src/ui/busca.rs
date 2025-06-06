@@ -1,7 +1,8 @@
 // Tela para buscar os times participantes da liga 
 
 // Widget para a tela de busca da aplicação
-use eframe::egui;
+use eframe::egui::{self, Color32};
+use egui_extras::{Size, StripBuilder};
 
 // Importando a estrutura de dados e a enumeração de telas
 use super::{AcaoDaTela, Tela};
@@ -23,17 +24,58 @@ impl Tela for BuscaData {
 
         // Definindo o painel central da tela
         egui::CentralPanel::default().show(ctx, |ui| {
+            
+            // Dividindo tela em três blocos empilhados na vertical
+            StripBuilder::new(ui)
+                .size(Size::exact(20.0))
+                .size(Size::remainder())
+                .size(Size::exact(20.0))
+                .vertical(|mut strip| {
 
-            // Título da tela
-            ui.heading("Buscar Time");
+                    // Compo para buscar time a ser adicionado
+                    strip.cell(|ui| {
 
-            // Campo para entrada de texto para busca
-            ui.text_edit_singleline(&mut self.busca_time);
+                        // Variavel auxiliar para justificar campo de entrada de texto
+                        let available_width = ui.available_width();
 
-            // Botão para voltar à tela inicial
-            if ui.button("Voltar").clicked() {
-                acao = Some(AcaoDaTela::Voltar);
-            }
+                        // Deixar hint_text como cinza e texto digitado como preto
+                        ui.style_mut().visuals.override_text_color = Some(Color32::GRAY);
+
+                        // Adicionar campo de entrada de texto para buscar time
+                        if ui.add_sized([available_width, 0.0], egui::TextEdit::singleline(&mut self.busca_time).hint_text("Nome do time").text_color(Color32::BLACK)).changed() {
+                            println!("Busca iniciada: {}", self.busca_time);
+                        };
+
+                    });
+
+                    // Espaço para a lista de times encontrados
+                    strip.cell(|ui| {
+
+                        // Deixando o fundo branco
+                        ui.painter().rect_filled(
+                            ui.available_rect_before_wrap(),
+                            5.0,
+                        Color32::WHITE);
+
+                    });
+
+                    // Rodapé da tela
+                    strip.cell(|ui| {
+
+                        // Centralizar o conteúdo 
+                        ui.horizontal_centered(|ui| {
+
+                            // Botão para voltar à tela inicial
+                            if ui.button("Voltar").clicked() {
+                                acao = Some(AcaoDaTela::Voltar);
+                            }
+
+                        });
+
+                    });
+
+                });
+
         });
 
         // Retornando a ação da tela
