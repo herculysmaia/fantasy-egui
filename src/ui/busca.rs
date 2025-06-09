@@ -63,7 +63,7 @@ impl Tela for BuscaData {
                     strip.cell(|ui| {
 
                         // Centralizar o conteúdo 
-                        ui.horizontal_centered(|ui| {
+                        ui.vertical_centered(|ui| {
 
                             // Botão para voltar à tela inicial
                             if ui.button("Voltar").clicked() {
